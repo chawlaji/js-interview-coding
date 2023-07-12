@@ -3,7 +3,7 @@
 Array.prototype.map2 = function (cbfcn) {
   let result = [];
   for (let i = 0; i < this.length; i++) {
-    result.push(cbfcn(this[i], i, this));
+    result.push(cbfcn.call(undefined,this[i], i, this));
   }
   return result;
 };
@@ -11,8 +11,8 @@ Array.prototype.map2 = function (cbfcn) {
 console.log([1, 2, 4, 6, 7].map2((x, i, arr) => x + i));
 
 console.log(
-  [1, 2, 4, 6, 7].map((x) => {
-    return x + 2;
+  [1, 2, 4, 6, 7].map((x,i) => {
+    return x + i;
   })
 );
 
@@ -20,7 +20,7 @@ console.log(
 Array.prototype.filter2 = function (cbfcn) {
   let result = [];
   for (let i = 0; i < this.length; i++) {
-    if (cbfcn(this[i], i, this)) result.push(this[i]);
+    if (cbfcn.call(undefined,this[i], i, this)) result.push(this[i]);
   }
   return result;
 };
