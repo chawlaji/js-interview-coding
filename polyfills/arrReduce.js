@@ -1,3 +1,42 @@
+
+// MAP polyfill
+Array.prototype.map2 = function (cbfcn) {
+  let result = [];
+  for (let i = 0; i < this.length; i++) {
+    result.push(cbfcn(this[i], i, this));
+  }
+  return result;
+};
+
+console.log([1, 2, 4, 6, 7].map2((x, i, arr) => x + i));
+
+console.log(
+  [1, 2, 4, 6, 7].map((x) => {
+    return x + 2;
+  })
+);
+
+//FILTER.Polyfill
+Array.prototype.filter2 = function (cbfcn) {
+  let result = [];
+  for (let i = 0; i < this.length; i++) {
+    if (cbfcn(this[i], i, this)) result.push(this[i]);
+  }
+  return result;
+};
+
+console.log(
+  [1, 2, 4, 6, 7].filter2((x) => {
+    return x > 2;
+  })
+);
+console.log(
+  [1, 2, 4, 6, 7].filter((x) => {
+    return x > 2;
+  })
+);
+
+// REDUCE Polyfill
 Array.prototype.myReduce = function (callback, initialValue) {
     let accumulator = initialValue;
     for (let i = 0; i < this.length; i++) {
